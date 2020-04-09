@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Post from './components/Post.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  post = {
+    posterName: 'Arnell Millhouse',
+    resourceAuthor: 'Albert Einstein',
+    skillLevel: 'Advanced',
+    cohort: '0',
+    title: 'Universal Equation',
+    categories: ['FORTRAN','redux'],
+    summary: 'This was a great article about blending Fortran and redux',
+    link: 'www.google.com/search?q=Albert20Einstein',
+    resourceType: 'Article',
+    datePublished: '1943-10-03.00:00:00z',
+    videoLength: null,
+    timeToComplete: 3,
+    rating: 5,
+    comments: [{poster: 'Cliff', text: 'Nice Post'}]
+
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <h1>Brainhive II</h1>
+        <Post post = {this.post}/>
+      </div>
+    );
+  }
 }
 
 export default App;
