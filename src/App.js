@@ -14,13 +14,13 @@ class App extends Component {
   }
 
   render(){
-    const display = posts.map(post => <Post post = {post} />);
-
+    
     return (
       <div className="App">
         <h1>Brainhive II</h1>
-        {this.renderPosts()}
-        {/* {display} */}
+        <div className ='postList'>
+          {this.renderPosts()} 
+        </div>
       </div>
     );
   }

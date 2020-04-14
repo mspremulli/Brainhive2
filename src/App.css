@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin: 1% 10%;
 }
 
 .App-logo {
@@ -28,9 +29,33 @@
   color: #61dafb;
 }
 .post {
-  border:solid;
-  border-width: 1px;
-  border-color: blue;
+  border:1px solid #171717;
+  border-radius: 8px;
+  border-bottom-width: 0;
+  margin-bottom: 25px;
+  padding-bottom: 8px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 5px 3px 5px black;
+  background-color: #F7F7F7;
+}
+
+.comments {
+  color:blue;
+}
+
+
+
+.post:hover{
+  background-color:lightgray;
+}
+
+.postList{
+  display:grid;
+  grid-template-columns: 500px 500px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 @keyframes App-logo-spin {

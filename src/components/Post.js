@@ -7,7 +7,7 @@ const Post =({post}) =>{
             <h2>{post.title}</h2>
             <p>{post.resourceAuthor}</p>
             {post.videoLength ? <p>Length: {post.videoLength}</p> : null}
-            <p>Comments: {post.comments.length}</p>
+            <p className = 'comments'>Comments: {post.comments.length}</p>
 
         </div>
     )
