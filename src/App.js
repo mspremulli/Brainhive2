@@ -26,8 +26,12 @@ class App extends Component {
    
         <div className="App">
           <Navbar />
-          <PostList posts = {this.state.posts}/>
-          <PostForm addPost = {this.addPost} />
+          <Route path = '/' exact> 
+           <PostList postList = {this.state.posts}/>
+          </Route>
+          <Route path ='/add' exact>
+            <PostForm addPost = {this.addPost} />
+          </Route>
         </div>
      
        </BrowserRouter>

@@ -5,12 +5,11 @@ const PostList = (props) =>{
 
     const renderPosts = () => {
         
-        const display = props.posts.map((post) => {
+        const display = props.postList.map((post) => {
         
             return (
                 <Post post = {post}/>
             )
-           // handleSelect={props.handleSelect}
         });
             return display;
         }
