@@ -1,29 +1,40 @@
 import React, {Component} from 'react';
+import {BrowserRouter, Route } from 'react-router-dom'
 import './App.css';
-import Post from './components/Post.js';
 import posts from './mock/posts.js';
+import Navbar from './components/Navbar.js';
+import PostList from './components/PostList.js';
+import PostForm from './components/PostForm.js';
+import ViewPost from './components/ViewPost.js';
 
 class App extends Component {
-  
-
-  renderPosts = () => {
-    const display = posts.map(post => {
-      return <Post post = {post} />
-    })
-    return display;
+  state = {
+    posts: [...posts],
   }
+
+  addPost = (postData) => {
+    this.setState({
+      posts: [...this.state.posts, postData],
+    })
+  }
+
 
   render(){
     
     return (
-      <div className="App">
-        <h1>Brainhive II</h1>
-        <div className ='postList'>
-          {this.renderPosts()} 
+       <BrowserRouter>
+   
+        <div className="App">
+          <Navbar />
+          <PostList posts = {this.state.posts}/>
+          <PostForm addPost = {this.addPost} />
         </div>
-      </div>
+     
+       </BrowserRouter>
     );
   }
 }
+
+
 
 export default App;

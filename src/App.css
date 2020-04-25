@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  margin: 1% 10%;
+  
 }
 
 .App-logo {
@@ -40,17 +40,19 @@
   background-color: #F7F7F7;
 }
 
+.post:hover{
+  box-shadow: 15px 9px 15px black;
+}
+
 .comments {
   color:blue;
 }
 
 
 
-.post:hover{
-  background-color:lightgray;
-}
 
 .postList{
+  margin: 1% 10%;
   display:grid;
   grid-template-columns: 500px 500px;
   flex-direction: row;
@@ -65,4 +67,23 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.header{
+  display: flex;
+  background-color: lightblue;
+  padding-left: 3vw;
+  margin-bottom: 8px;
+}
+
+#brand{
+  flex:1;
+}
+
+
+#navigation {
+  display:flex;
+  padding: 0 32px;
+  justify-content: center;
+  align-items:center;
 }
