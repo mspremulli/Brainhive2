@@ -2,6 +2,7 @@ import React, { Component } from "react";
 class PostForm extends Component {
 
   state = {
+    id: 0,
     posterName: "",
     resourceAuthor: "",
     jobSkillLevel: "",
@@ -11,7 +12,7 @@ class PostForm extends Component {
     summary: "",
     link: "",
     resourceType: "",
-    datePublished: null,
+    datePublished: "",
     videoLength: "",
     timeToComplete: "",
     rating: "",
@@ -19,7 +20,6 @@ class PostForm extends Component {
   };
 
   handleChange = (e) => {
-    console.log(this.state);
     this.setState({
       ...this.state,
       [e.target.id]: e.target.value,
@@ -29,11 +29,11 @@ class PostForm extends Component {
   handleSubmit = (e) => {
     //add form validation
     e.preventDefault();
-    console.log('submit')
     const postData = {...this.state}
     postData.categories = postData.categories.split(',');
     this.props.addPost(postData);
     this.setState = {
+        id: 0,
         posterName: "",
         resourceAuthor: "",
         jobSkillLevel: "",

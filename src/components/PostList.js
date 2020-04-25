@@ -8,7 +8,7 @@ const PostList = (props) =>{
         const display = props.postList.map((post) => {
         
             return (
-                <Post post = {post}/>
+                <Post post = {post} key = {post.id} onSelect = {props.onSelect}/>
             )
         });
             return display;
