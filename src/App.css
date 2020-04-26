@@ -76,6 +76,16 @@
   margin-bottom: 8px;
 }
 
+.singlePost{
+  display: grid;
+  align-content: center;
+  background-color: lightgrey;
+  border: 1px solid black;
+  border-radius: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 #brand{
   flex:1;
 }

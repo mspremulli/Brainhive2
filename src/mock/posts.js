@@ -8,7 +8,7 @@ export default [
     title: "The Universal Equation",
     categories: ["FORTRAN", "redux"],
     summary: "This was a great article about blending fortran and redux.",
-    link: "www.google.com/search?q=Albert%20Einstein",
+    link: "https://www.google.com/search?q=Albert%20Einstein",
     resourceType: "Article",
     datePublished: "1943-10-03.00:00:00z",
     videoLength: null,
