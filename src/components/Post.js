@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 
+
+/*Display an individual Post 
+
+*/
+
 class Post extends Component {
     state = {
         clicked:false
