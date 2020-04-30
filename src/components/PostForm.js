@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import Button from './common/Button.js';
 class PostForm extends Component {
 
+  INITIAL_STATE ={}
   state = {
     id: 0,
     posterName: "",
@@ -152,7 +154,7 @@ class PostForm extends Component {
             value={this.state.rating}
             onChange={(e) => this.handleChange(e)}
           />
-          <button type="submit">Submit</button>
+          <Button type = "submit">Submit</Button>
         </form>
       </div>
     );
