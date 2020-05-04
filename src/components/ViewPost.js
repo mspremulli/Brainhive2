@@ -18,10 +18,10 @@ class ViewPost extends Component{
     }
 
     renderComments = (post) => {
-        console.log("post",post);
+        // console.log("post",post);
         return post.comments.map(comment =>{
             return(
-                <div className = 'box'>
+                <div className = 'box' key = {Math.random()}>
                     <p>{comment.commenter}</p>
                     <p>{comment.text}</p>
                 </div>
@@ -31,7 +31,7 @@ class ViewPost extends Component{
 
     render(){
         const props = this.props ;
-        const {postId} = props.match.params;
+        // const {postId} = props.match.params;
               
         const linkRegex = /^https?:\/\//;
         const link = props.post.link.match(linkRegex) ?
@@ -44,14 +44,14 @@ class ViewPost extends Component{
                             
                 <h5>{props.post.summary}</h5>
                 <h5> Rating: {props.post.rating}</h5>
-                <a target = '_blank' href = {link}>
+                <a  href = {link}>
                     <h5> View the : {props.post.resourceType}</h5>
                 </a>
                
                 <Button onClick = {this.clickHandler}>
                     {this.state.showComments ? "Hide Comments": "Show Comments"}
                 </Button> 
-                {this.state.showComments ? <p>{this.renderComments(props.post)}</p> : null}
+                {this.state.showComments ? this.renderComments(props.post) : null}
             
             </div>
         )
