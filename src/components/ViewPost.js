@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom';
 import Button from './common/Button.js';
-/*display a single post*/
+
+/*displays a single post*/
 
 class ViewPost extends Component{
     state = {
@@ -57,5 +58,11 @@ class ViewPost extends Component{
         )
     }
 }
+
+// const mapStateToProps = (store) => {
+//   return{
+//     posts:store.posts
+//   }
+// }
 
 export default withRouter(ViewPost);

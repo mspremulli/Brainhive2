@@ -1,25 +1,30 @@
 import React, { Component } from "react";
 import Button from './common/Button.js';
+import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
+
+const INITIAL_STATE = {
+  id: 0,
+  posterName: "",
+  resourceAuthor: "",
+  jobSkillLevel: "",
+  cohort: "",
+  title: "",
+  categories: "",
+  summary: "",
+  link: "",
+  resourceType: "",
+  datePublished: "",
+  videoLength: "",
+  timeToComplete: "",
+  rating: "",
+  comments:[]
+}
+
 class PostForm extends Component {
 
-  INITIAL_STATE ={}
-  state = {
-    id: 0,
-    posterName: "",
-    resourceAuthor: "",
-    jobSkillLevel: "",
-    cohort: "",
-    title: "",
-    categories: "",
-    summary: "",
-    link: "",
-    resourceType: "",
-    datePublished: "",
-    videoLength: "",
-    timeToComplete: "",
-    rating: "",
-    comments:[]
-  };
+  
+  state = {...INITIAL_STATE};
 
   handleChange = (e) => {
     this.setState({
@@ -30,37 +35,20 @@ class PostForm extends Component {
 
   handleSubmit = (e) => {
     //add form validation
-    e.preventDefault();
+    // e.preventDefault();
     const postData = {...this.state}
     postData.categories = postData.categories.split(',');
     this.props.addPost(postData);
-    this.setState = {
-        id: 0,
-        posterName: "",
-        resourceAuthor: "",
-        jobSkillLevel: "",
-        cohort: "",
-        title: "",
-        categories: "",
-        summary: "",
-        link: "",
-        resourceType: "",
-        datePublished: null,
-        videoLength: "",
-        timeToComplete: "",
-        rating: "",
-        comments:[]
-        
-    };
+    this.setState = {...INITIAL_STATE};
 
-
+    
   }
 
 
   render() {
     return (
       <div>
-        <form style={myStyles.form} onSubmit = {(e) => this.handleSubmit(e)}>
+        <form style={myStyles.form} >
           {/* <label htmlFor="posterName">Your Name: </label> */}
           <input
             type="text"
@@ -154,7 +142,11 @@ class PostForm extends Component {
             value={this.state.rating}
             onChange={(e) => this.handleChange(e)}
           />
-          <Button type = "submit">Submit</Button>
+
+          <Link to ='/' onClick = {(e) => this.handleSubmit(e)}>
+            <Button type = "submit">Submit</Button>
+          </Link>
+
         </form>
       </div>
     );
@@ -168,4 +160,4 @@ const myStyles = {
     alignItems: "center",
   },
 };
-export default PostForm;
+export default withRouter(PostForm);
