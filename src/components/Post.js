@@ -26,6 +26,7 @@ class Post extends Component {
                 {this.state.clicked ? <Redirect to = '/post/id' /> : null}
                 <h2>{post.title}</h2>
                 <p>{post.resourceAuthor}</p>
+                <p>{post.summary}</p>
                 {post.videoLength ? <p>Length: {post.videoLength}</p> : null}
                 <p className = 'comments'>Comments: {post.comments.length}</p>
 

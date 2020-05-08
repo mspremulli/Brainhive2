@@ -76,7 +76,7 @@ export default [
     id: 5,
     posterName: "Michael Spremulli",
     resourceAuthor: "Erl Cope",
-    skillLevel: "Advanced",
+    jobSkillLevel: "Advanced",
     cohort: "10",
     title: "Cloud Computing Design Patterns",
     categories: ["cloud", "design patterns", "architecture"],

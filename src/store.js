@@ -6,11 +6,12 @@ import reducers from './reducers';
 
 const INITIAL_STORE ={};
 const middleware = [thunk];
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   reducers,
   INITIAL_STORE,
-  compose(applyMiddleware(...middleware))
+  composeEnhancers(applyMiddleware(...middleware))
 )
 
 export default store;

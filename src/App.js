@@ -32,10 +32,14 @@ class App extends Component {
   render(){
     
     return (
+
+      
        <BrowserRouter>
    
         <div className="App">
+        
           <Navbar />
+          
           <Switch>
             <Route path = '/' exact> 
             <PostList postList = {this.state.posts}
@@ -48,6 +52,7 @@ class App extends Component {
               <ViewPost post = {this.state.posts[this.state.selected -1] }/>
             </Route>
           </Switch>
+         
         </div>
      
        </BrowserRouter>
