@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 // import {increment} from '../actions';
 import Post from './Post.js';
 
+let query='';
+
 /*Postlist is in charge of displaying a list of post cards */
 class PostList extends Component {
   state = {
@@ -27,15 +29,15 @@ class PostList extends Component {
   };
 
   //filters the posts to whatever the current query and radiobox show
-  handleChange = () => {
-    const query = this.state.query;
+  handleChange = (query) => {
+    // const query = this.state.query === '' ? val : this.state.query;
     const radio = this.state.radioValue !== '' ? this.state.radioValue : 'title'; 
     console.log('handlechange. query: ', this.state.query,"radio: ",this.state.radioValue);
     let newPosts = [...this.state.filteredPosts];
     switch(radio){
       case 'comments':
         newPosts = this.props.postList.filter(post => {
-          let shouldReturn=false;
+          let shouldReturn = false;
             post.comments.forEach(elem => { 
               if( elem.text.toLowerCase().indexOf(query.toLowerCase()) >= 0){
                 shouldReturn = true;
@@ -48,7 +50,7 @@ class PostList extends Component {
 
       case 'categories':
         newPosts = this.props.postList.filter(post => {
-          let shouldReturn=false;
+          let shouldReturn = false;
             post.categories.forEach(elem => {
               if( elem.toLowerCase().indexOf(query.toLowerCase()) >= 0){
                 shouldReturn = true;
@@ -82,18 +84,19 @@ class PostList extends Component {
       radioValue:value
     });
     console.log('handleradiobox. value: ',value,'radiovalue: ', this.state.radioValue)
-    this.handleChange();
+     this.handleChange(query);
   };
   
   //updates the state query everytime a letter is changed in the searchbar, then calls handlechange
   updateSearch = (e) => {
     const value = e.target.value;
+    query =  e.target.value;
     this.setState({
       ...this.state,
       query:value
     });
     console.log('updatesearch. query: ',this.state.query,'e: ',e.target.value);
-    this.handleChange();
+    this.handleChange(value);
   };
   
   //does nothing yet, will impliment with redux
@@ -101,94 +104,90 @@ class PostList extends Component {
     this.props.increment(this.props.count);
   };
 
-  render(){                
+  render(){                       
+    return(
+      <div>
+        <div style = {myStyles.searchBar}>
+            <form  onChange = {(e) => this.updateSearch(e)}>
+              <span role ='img'>🔎</span>
+              <input 
+                  style = {myStyles.input} 
+                  text = 'text' 
+                  placeholder = 'search titles' 
+              />
+            </form>    
+            <form onClick = {(e) => this.handleRadiobox(e)}>
+              <label >Title</label>
+                <input 
+                  name = 'search'
+                  style = {myStyles.checkbox}
+                  value = 'title'
+                  type = "radio"
+                />
+              <br/>
               
-      return(
-          <div>
-              <div style = {myStyles.searchBar}>
-                  <form  onChange = {(e) => this.updateSearch(e)}>
-                  <span role='img'>🔎</span>
-                      <input 
-                          style = {myStyles.input} 
-                          text = 'text' 
-                          placeholder = 'search titles' 
-                      />
-                  </form>    
-                  <form onClick = {(e) => this.handleRadiobox(e)}>
-                  
-                  
-                    <label >Title</label>
-                      <input 
-                        name = 'search'
-                        style = {myStyles.checkbox}
-                        value = 'title'
-                        type = "radio"
-                      />
-                    <br/>
-                    
-                    <label > Summary</label>
-                      <input 
-                        name = 'search'
-                        style = {myStyles.checkbox}
-                        value= 'summary'
-                        type = "radio"
-                      />
-                    <br/>
+              <label > Summary</label>
+                <input 
+                  name = 'search'
+                  style = {myStyles.checkbox}
+                  value= 'summary'
+                  type = "radio"
+                />
+              <br/>
 
-                    <label >Categories</label>
-                      <input 
-                        name = 'search'
-                        style = {myStyles.checkbox}
-                        value = 'categories'
-                        type = "radio"
-                      />
-                    <br/>
+              <label >Categories</label>
+                <input 
+                  name = 'search'
+                  style = {myStyles.checkbox}
+                  value = 'categories'
+                  type = "radio"
+                />
+              <br/>
 
-                    <label >Rescource Type</label>
-                      <input 
-                        name = 'search'
-                        style = {myStyles.checkbox}
-                        value = 'resourceType'
-                        type = "radio"
-                      />
-                    <br/>
+              <label >Rescource Type</label>
+                <input 
+                  name = 'search'
+                  style = {myStyles.checkbox}
+                  value = 'resourceType'
+                  type = "radio"
+                />
+              <br/>
 
-                    <label >Skill Level</label>
-                      <input 
-                        name = 'search'
-                        style = {myStyles.checkbox}
-                        value = 'jobSkillLevel'
-                        type = "radio"
-                      />
-                    <br/>
+              <label >Skill Level</label>
+                <input 
+                  name = 'search'
+                  style = {myStyles.checkbox}
+                  value = 'jobSkillLevel'
+                  type = "radio"
+                />
+              <br/>
 
-                    <label >comments</label>
-                      <input 
-                        name = 'search'
-                        style = {myStyles.checkbox}
-                        value = 'comments'
-                        type = "radio"
-                      />
-                    <br/>
-                  </form>
-                  <br />
-                  
-              </div>
-              <div className = 'postList'>
-                  {this.renderPosts()} 
-              </div>
+              <label >comments</label>
+                <input 
+                  name = 'search'
+                  style = {myStyles.checkbox}
+                  value = 'comments'
+                  type = "radio"
+                />
+              <br/>
+            </form>
+            <br />
+            
+        </div>
+        <div className = 'postList'>
+            {this.renderPosts()} 
+        </div>
 
-              {/* <div className='footer'>
-                <button onClick={this.handleClick}>increase</button>
-                <p>this.props.count</p>
-              </div> */}
+        {/* <div className='footer'>
+          <button onClick={this.handleClick}>increase</button>
+          <p>this.props.count</p>
+        </div> */}
 
-          </div>
-      )
+      </div>
+    )
 
   }
 }
-
 
 const myStyles = {
     searchBar: {
@@ -198,7 +197,6 @@ const myStyles = {
         marginRight:'30%',
         margrinBottom:'32px',
         
-
     },
     input: {
         width: "70%",
@@ -206,7 +204,7 @@ const myStyles = {
         fontSize: 20,
         margrinBottom: 4,
     },
-    checkbox:{
+    checkbox: {
       opacity:'100%',
     }
 }
