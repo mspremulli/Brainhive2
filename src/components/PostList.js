@@ -29,50 +29,49 @@ class PostList extends Component {
   //filters the posts to whatever the current query and radiobox show
   handleChange = () => {
     const query = this.state.query;
-    console.log(query,this.state.radioValue);
-      // this.setState({query:query});
-      const radio = this.state.radioValue !== '' ? this.state.radioValue : 'title'; 
-      let newPosts = [...this.state.filteredPosts];
-      switch(radio){
-        case 'comments':
-          newPosts = this.props.postList.filter(post => {
-            let shouldReturn=false;
-              post.comments.forEach(elem => { 
-               if( elem.text.toLowerCase().indexOf(query.toLowerCase()) >= 0){
-                 shouldReturn = true;
-               } 
-              })
-              // console.log('return comments',shouldReturn)
-              return shouldReturn;
-          });
-        break;
+    const radio = this.state.radioValue !== '' ? this.state.radioValue : 'title'; 
+    console.log('handlechange. query: ', this.state.query,"radio: ",this.state.radioValue);
+    let newPosts = [...this.state.filteredPosts];
+    switch(radio){
+      case 'comments':
+        newPosts = this.props.postList.filter(post => {
+          let shouldReturn=false;
+            post.comments.forEach(elem => { 
+              if( elem.text.toLowerCase().indexOf(query.toLowerCase()) >= 0){
+                shouldReturn = true;
+              } 
+            })
+            // console.log('return comments',shouldReturn)
+            return shouldReturn;
+        });
+      break;
 
-        case 'categories':
-          newPosts = this.props.postList.filter(post => {
-            let shouldReturn=false;
-              post.categories.forEach(elem => {
-               if( elem.toLowerCase().indexOf(query.toLowerCase()) >= 0){
-                 shouldReturn = true;
-               }
-              })
-              return shouldReturn;
-          });
-        break;
+      case 'categories':
+        newPosts = this.props.postList.filter(post => {
+          let shouldReturn=false;
+            post.categories.forEach(elem => {
+              if( elem.toLowerCase().indexOf(query.toLowerCase()) >= 0){
+                shouldReturn = true;
+              }
+            })
+            return shouldReturn;
+        });
+      break;
 
-        default:{
-         newPosts = this.props.postList.filter(post => {
-          //  console.log('def',post[radio])
-            return (
-              post[radio].toLowerCase().indexOf(query.toLowerCase()) >= 0
-              )
-          });
-        }
-      };
-      
-      this.setState({
-          query,
-          filteredPosts:newPosts,
-      });
+      default:{
+        newPosts = this.props.postList.filter(post => {
+        //  console.log('def',post[radio])
+          return (
+            post[radio].toLowerCase().indexOf(query.toLowerCase()) >= 0
+            )
+        });
+      }
+    };
+    
+    this.setState({
+        query,
+        filteredPosts:newPosts,
+    });
   };
 
   //updates the state of the radiobox, then calls handlechange
@@ -82,7 +81,7 @@ class PostList extends Component {
       ...this.state,
       radioValue:value
     });
-    console.log('value',value,'radiovalue', this.state.radioValue)
+    console.log('handleradiobox. value: ',value,'radiovalue: ', this.state.radioValue)
     this.handleChange();
   };
   
@@ -93,7 +92,7 @@ class PostList extends Component {
       ...this.state,
       query:value
     });
-    console.log('query',this.state.query,'e',e.target.value);
+    console.log('updatesearch. query: ',this.state.query,'e: ',e.target.value);
     this.handleChange();
   };
   
@@ -115,7 +114,7 @@ class PostList extends Component {
                           placeholder = 'search titles' 
                       />
                   </form>    
-                  <form onChange = {(e) => this.handleRadiobox(e)}>
+                  <form onClick = {(e) => this.handleRadiobox(e)}>
                   
                   
                     <label >Title</label>
