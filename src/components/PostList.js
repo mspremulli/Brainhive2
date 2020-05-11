@@ -3,8 +3,6 @@ import React, {Component} from 'react';
 // import {increment} from '../actions';
 import Post from './Post.js';
 
-let query='';
-
 /*Postlist is in charge of displaying a list of post cards */
 class PostList extends Component {
   state = {
@@ -77,25 +75,24 @@ class PostList extends Component {
   };
 
   //updates the state of the radiobox, then calls handlechange
-  handleRadiobox = (e) => {
+  handleRadiobox = async(e) => {
     const value = e.target.value;
-    this.setState({
+    await this.setState({
       ...this.state,
       radioValue:value
     });
-    console.log('handleradiobox. value: ',value,'radiovalue: ', this.state.radioValue)
-     this.handleChange(query);
+    console.log('handleradiobox. value:',value,'radiovalue:', this.state.radioValue)
+    this.handleChange(this.state.query);
   };
   
   //updates the state query everytime a letter is changed in the searchbar, then calls handlechange
-  updateSearch = (e) => {
+  updateSearch = async(e) => {
     const value = e.target.value;
-    query =  e.target.value;
-    this.setState({
+    await this.setState({
       ...this.state,
       query:value
     });
-    console.log('updatesearch. query: ',this.state.query,'e: ',e.target.value);
+    console.log('updatesearch. query:',this.state.query,'e:',value);
     this.handleChange(value);
   };
   
