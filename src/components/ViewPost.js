@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import Button from './common/Button.js';
 
 /*displays a single post*/
@@ -33,6 +34,8 @@ class ViewPost extends Component{
     render(){
         const props = this.props ;
         // const {postId} = props.match.params;
+        //postIndex = this.props.posts.list.findIndex(item=>{return item.id === postId});
+        //const post = this.props.posts.list[postIndex];
               
         const linkRegex = /^https?:\/\//;
         const link = props.post.link.match(linkRegex) ?
@@ -65,4 +68,11 @@ class ViewPost extends Component{
 //   }
 // }
 
-export default withRouter(ViewPost);
+
+const mapStateToProps = (store) => {
+  return{
+    posts:store.posts
+  };
+};
+
+export default connect(mapStateToProps)(withRouter(ViewPost));

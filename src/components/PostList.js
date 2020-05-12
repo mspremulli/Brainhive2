@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-// import {connect} from 'react-redux';
-// import {increment} from '../actions';
+import {connect} from 'react-redux';
+import {increment} from '../actions';
 import Post from './Post.js';
+
 
 /*Postlist is in charge of displaying a list of post cards */
 class PostList extends Component {
   state = {
       query:  "",
-      filteredPosts:[...this.props.postList],
+      filteredPosts:[...this.props.posts.list],
       radioValue: "",
 
   };
@@ -34,7 +35,7 @@ class PostList extends Component {
     let newPosts = [...this.state.filteredPosts];
     switch(radio){
       case 'comments':
-        newPosts = this.props.postList.filter(post => {
+        newPosts = this.props.posts.list.filter(post => {
           let shouldReturn = false;
             post.comments.forEach(elem => { 
               if( elem.text.toLowerCase().indexOf(query.toLowerCase()) >= 0){
@@ -47,7 +48,7 @@ class PostList extends Component {
       break;
 
       case 'categories':
-        newPosts = this.props.postList.filter(post => {
+        newPosts = this.props.posts.list.filter(post => {
           let shouldReturn = false;
             post.categories.forEach(elem => {
               if( elem.toLowerCase().indexOf(query.toLowerCase()) >= 0){
@@ -59,7 +60,7 @@ class PostList extends Component {
       break;
 
       default:{
-        newPosts = this.props.postList.filter(post => {
+        newPosts = this.props.posts.list.filter(post => {
         //  console.log('def',post[radio])
           return (
             post[radio].toLowerCase().indexOf(query.toLowerCase()) >= 0
@@ -175,10 +176,10 @@ class PostList extends Component {
             {this.renderPosts()} 
         </div>
 
-        {/* <div className='footer'>
+        <div className='footer'>
           <button onClick={this.handleClick}>increase</button>
-          <p>this.props.count</p>
-        </div> */}
+          <p>{this.props.count}</p>
+        </div>
 
       </div>
     )
@@ -206,14 +207,15 @@ const myStyles = {
     }
 }
 
-// const mapStoreToProps = store => {
-//   return {
-//     count:store.posts.count,
-//   }
-// }
+const mapStoreToProps = store => {
+  return {
+    posts:store.posts,
+    count:store.posts.count,
+  }
+}
 
-// export default connect(mapStoreToProps, {
-//   increment: increment
-// })(PostList);
 
-export default PostList;
+
+export default connect(mapStoreToProps, {
+  increment: increment
+})(PostList);

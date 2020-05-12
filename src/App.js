@@ -13,14 +13,14 @@ class App extends Component {
     posts: [...posts],
     selected: 1
   }
-
+//remove with reux
   addPost = (postData) => {
     postData.id = this.state.posts.length + 1 ;
     this.setState({
       posts: [...this.state.posts, postData],
     })
   }
-
+//remove when change to redux
   onSelect = (id) => {
     console.log(id)
     this.setState({
@@ -42,8 +42,7 @@ class App extends Component {
           
           <Switch>
             <Route path = '/' exact> 
-            <PostList postList = {this.state.posts}
-                      onSelect = {this.onSelect}/>
+            <PostList    onSelect = {this.onSelect}/>
             </Route>
             <Route path ='/add' exact>
               <PostForm addPost = {this.addPost} />
