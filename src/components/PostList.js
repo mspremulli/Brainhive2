@@ -207,7 +207,7 @@ const myStyles = {
     }
 }
 
-const mapStoreToProps = store => {
+const mapStoreToProps = (store) => {
   return {
     posts:store.posts,
     count:store.posts.count,

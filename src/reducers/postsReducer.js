@@ -7,9 +7,7 @@ const INITIAL_STATE = {
   loading:false,
   errors:{},
   count:0,
-
 }
-
 
 export default (state = INITIAL_STATE, action) => {
   switch(action.type){
