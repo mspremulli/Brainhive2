@@ -1,9 +1,7 @@
 import {CHANGE, SUBMIT_FORM} from '../actions/types';
 
-
 const INITIAL_STATE = {
   form:{
-
     id: 0,
     posterName: "",
     resourceAuthor: "",
@@ -24,7 +22,7 @@ const INITIAL_STATE = {
   errors:null
 }
 
-export default(store = INITIAL_STATE,action) =>{
+export default(store = INITIAL_STATE, action) =>{
   switch(action.type){
     case CHANGE:
       return{

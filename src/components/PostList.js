@@ -3,28 +3,26 @@ import {connect} from 'react-redux';
 import {increment} from '../actions';
 import Post from './Post.js';
 
-
 /*Postlist is in charge of displaying a list of post cards */
 class PostList extends Component {
   state = {
-      query:  "",
-      filteredPosts:[...this.props.posts.list],
-      radioValue: "",
-
+    query:  "",
+    filteredPosts:[...this.props.posts.list],
+    radioValue: "",
   };
   
   //renders the posts to the DOM
   renderPosts = () => {        
-      const display = this.state.filteredPosts.map((post) => {
-          return (
-            <Post 
-              post = {post} 
-              key = {post.id} 
-              onSelect = {this.props.onSelect}
-            />
-          )
-      });
-      return display;
+    const display = this.state.filteredPosts.map((post) => {
+      return (
+        <Post 
+          post = {post} 
+          key = {post.id} 
+          onSelect = {this.props.onSelect}
+        />
+      )
+    });
+    return display;
   };
 
   //filters the posts to whatever the current query and radiobox show
@@ -70,8 +68,8 @@ class PostList extends Component {
     };
     
     this.setState({
-        query,
-        filteredPosts:newPosts,
+      query,
+      filteredPosts:newPosts,
     });
   };
 
@@ -106,74 +104,74 @@ class PostList extends Component {
     return(
       <div>
         <div style = {myStyles.searchBar}>
-            <form  onChange = {(e) => this.updateSearch(e)}>
-              <span role ='img'>🔎</span>
+          <form  onChange = {(e) => this.updateSearch(e)}>
+            <span role ='img'>🔎</span>
+            <input 
+              style = {myStyles.input} 
+              text = 'text' 
+              placeholder = 'search titles' 
+            />
+          </form>    
+          <form onClick = {(e) => this.handleRadiobox(e)}>
+            <label >Title</label>
               <input 
-                  style = {myStyles.input} 
-                  text = 'text' 
-                  placeholder = 'search titles' 
+                name = 'search'
+                style = {myStyles.checkbox}
+                value = 'title'
+                type = "radio"
               />
-            </form>    
-            <form onClick = {(e) => this.handleRadiobox(e)}>
-              <label >Title</label>
-                <input 
-                  name = 'search'
-                  style = {myStyles.checkbox}
-                  value = 'title'
-                  type = "radio"
-                />
-              <br/>
-              
-              <label > Summary</label>
-                <input 
-                  name = 'search'
-                  style = {myStyles.checkbox}
-                  value= 'summary'
-                  type = "radio"
-                />
-              <br/>
+            <br/>
+            
+            <label > Summary</label>
+              <input 
+                name = 'search'
+                style = {myStyles.checkbox}
+                value= 'summary'
+                type = "radio"
+              />
+            <br/>
 
-              <label >Categories</label>
-                <input 
-                  name = 'search'
-                  style = {myStyles.checkbox}
-                  value = 'categories'
-                  type = "radio"
-                />
-              <br/>
+            <label >Categories</label>
+              <input 
+                name = 'search'
+                style = {myStyles.checkbox}
+                value = 'categories'
+                type = "radio"
+              />
+            <br/>
 
-              <label >Rescource Type</label>
-                <input 
-                  name = 'search'
-                  style = {myStyles.checkbox}
-                  value = 'resourceType'
-                  type = "radio"
-                />
-              <br/>
+            <label >Rescource Type</label>
+              <input 
+                name = 'search'
+                style = {myStyles.checkbox}
+                value = 'resourceType'
+                type = "radio"
+              />
+            <br/>
 
-              <label >Skill Level</label>
-                <input 
-                  name = 'search'
-                  style = {myStyles.checkbox}
-                  value = 'jobSkillLevel'
-                  type = "radio"
-                />
-              <br/>
+            <label >Skill Level</label>
+              <input 
+                name = 'search'
+                style = {myStyles.checkbox}
+                value = 'jobSkillLevel'
+                type = "radio"
+              />
+            <br/>
 
-              <label >comments</label>
-                <input 
-                  name = 'search'
-                  style = {myStyles.checkbox}
-                  value = 'comments'
-                  type = "radio"
-                />
-              <br/>
-            </form>
-            <br />
+            <label >comments</label>
+              <input 
+                name = 'search'
+                style = {myStyles.checkbox}
+                value = 'comments'
+                type = "radio"
+              />
+            <br/>
+          </form>
+          <br />
             
         </div>
         <div className = 'postList'>
-            {this.renderPosts()} 
+          {this.renderPosts()} 
         </div>
 
         <div className='footer'>
@@ -188,23 +186,23 @@ class PostList extends Component {
 }
 
 const myStyles = {
-    searchBar: {
-        flex: 1,
-        flexDirection:'row',
-        marginLeft:'30%',
-        marginRight:'30%',
-        margrinBottom:'32px',
-        
-    },
-    input: {
-        width: "70%",
-        height: 32,
-        fontSize: 20,
-        margrinBottom: 4,
-    },
-    checkbox: {
-      opacity:'100%',
-    }
+  searchBar: {
+    flex: 1,
+    flexDirection:'row',
+    marginLeft:'30%',
+    marginRight:'30%',
+    margrinBottom:'32px',
+      
+  },
+  input: {
+    width: "70%",
+    height: 32,
+    fontSize: 20,
+    margrinBottom: 4,
+  },
+  checkbox: {
+    opacity:'100%',
+  }
 }
 
 const mapStoreToProps = (store) => {

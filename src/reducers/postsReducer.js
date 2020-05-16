@@ -18,10 +18,10 @@ export default (state = INITIAL_STATE, action) => {
       }
     case SUBMIT_FORM:
       const newPost = action.payload;
-      newPost.id = store.list[store.list.length-1].id +1;
+      newPost.id = store.list[store.list.length-1].id + 1;
       return{
         ...store,
-        list:[...store.list,newPost],
+        list:[...store.list, newPost],
       }
     default: return state;
   }
